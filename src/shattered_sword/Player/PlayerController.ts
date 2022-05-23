@@ -401,7 +401,7 @@ export default class PlayerController extends StateMachineAI implements BattlerA
             {type:BuffType.SPEED, value:num * 2, category: BuffCategory.EXTRA},
             {type:BuffType.FLAT_HEALTH, value:num, category: BuffCategory.SHIELD},
             {type:BuffType.RANGE, value:num/100, category: BuffCategory.ATTACK, string: "\n\nIncrease range \nby "+num+"%"},
-            {type:BuffType.ATKSPEED, value:num, category: BuffCategory.ATTACK},
+            {type:BuffType.ATKSPEED, value:num/100, category: BuffCategory.ATTACK},
         );
         
         
@@ -626,7 +626,7 @@ export default class PlayerController extends StateMachineAI implements BattlerA
 
             case BuffType.ATKSPEED:
                 if (item) {
-                    this.cooldownMultiplier -= buff.value;
+                    this.cooldownMultiplier *= (1 - buff.value);
                     //reduce cooldowntimer 
                     (<Weapon>item).cooldownTimer = new Timer((<Weapon>item).cooldown * this.cooldownMultiplier )
                 }

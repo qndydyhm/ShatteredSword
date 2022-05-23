@@ -55,7 +55,7 @@ export default class MainMenu extends Scene {
         this.seedInput.size.set(200, 50);
 
         // Add map button, and give it an event to emit on press
-        const map = this.add.uiElement(UIElementType.BUTTON, "mainMenu", {position: new Vec2(center.x, center.y - 80), text: "Start Game"});
+        const map = this.add.uiElement(UIElementType.BUTTON, "mainMenu", {position: new Vec2(center.x, center.y - 100), text: "Start Game"});
         map.size.set(200, 50);
         map.borderWidth = 2;
         map.borderColor = Color.WHITE;
@@ -131,14 +131,12 @@ export default class MainMenu extends Scene {
         
         const header = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 250), text: "Controls"});
         header.textColor = Color.WHITE;
-        const lc = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 150), text: "A/D - Move Left/Right"});
+        const lc = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 100), text: "A/D/Left/Right - Move Left/Right"});
         lc.textColor = Color.WHITE;
-        const rc = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 100), text: "W/S - Look Up/Down"});
-        rc.textColor = Color.WHITE;
-        const wasd = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 50), text: "J/Z/Enter - Attack"});
+        const wasd = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y - 50), text: "J/X/Enter - Attack"});
         wasd.textColor = Color.WHITE;
         
-        const e = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y), text: "SPACE/X - Jump"});
+        const e = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y), text: "SPACE/Z - Jump"});
         e.textColor = Color.WHITE;
         const q = <Label>this.add.uiElement(UIElementType.LABEL, "control", {position: new Vec2(center.x, center.y + 50), text: "K/C - Dash"});
         q.textColor = Color.WHITE;
