@@ -1131,47 +1131,50 @@ export default class GameLevel extends Scene {
             this.storyProgress++;
             let tmp = undefined;
             if (this.story.texts[this.storyProgress].actions) {
-                this.story.texts[this.storyProgress].actions.forEach(action => {
-                    switch (action.type) {
-                        case "loadSprite":
-                            if (this.load.getImage(action.key)) {
-                                tmp = this.add.sprite(action.key, "story");
-                                tmp.position.set(action.positon[0], action.positon[1]);
-                                tmp.scale.set(action.scale[0], action.scale[1]);
-                                this.storySprites.push(tmp);
-                            }
-                            else {
-                                this.load.singleImage(action.key, action.path, () => {
-                                    tmp = this.add.sprite(action.key, "story");
-                                    tmp.position.set(action.positon[0], action.positon[1]);
-                                    tmp.scale.set(action.scale[0], action.scale[1]);
-                                    this.storySprites.push(tmp);
-                                })
-                            }
-                            break;
-                        case "moveSprite":
-                            tmp = this.storySprites.find(function (sprite) {
-                                return sprite.imageId === action.key;
-                            });
-                            tmp.position.set(action.positon[0], action.positon[1]);
-                            tmp.scale.set(action.scale[0], action.scale[1]);
-                            break;
-                        case "showSprite":
-                            tmp = this.storySprites.find(function (sprite) {
-                                return sprite.imageId === action.key;
-                            });
-                            tmp.visible = true;
-                            break;
-                        case "hideSprite":
-                            tmp = this.storySprites.find(function (sprite) {
-                                return sprite.imageId === action.key;
-                            });
-                            tmp.visible = false;
-                            break;
-                        default:
-                            break;
-                    }
-                })
+		try {
+			this.story.texts[this.storyProgress].actions.forEach(action => {
+			    switch (action.type) {
+				case "loadSprite":
+				    if (this.load.getImage(action.key)) {
+					tmp = this.add.sprite(action.key, "story");
+					tmp.position.set(action.positon[0], action.positon[1]);
+					tmp.scale.set(action.scale[0], action.scale[1]);
+					this.storySprites.push(tmp);
+				    }
+				    else {
+					this.load.singleImage(action.key, action.path, () => {
+					    tmp = this.add.sprite(action.key, "story");
+					    tmp.position.set(action.positon[0], action.positon[1]);
+					    tmp.scale.set(action.scale[0], action.scale[1]);
+					    this.storySprites.push(tmp);
+					})
+				    }
+				    break;
+				case "moveSprite":
+				    tmp = this.storySprites.find(function (sprite) {
+					return sprite.imageId === action.key;
+				    });
+				    tmp.position.set(action.positon[0], action.positon[1]);
+				    tmp.scale.set(action.scale[0], action.scale[1]);
+				    break;
+				case "showSprite":
+				    tmp = this.storySprites.find(function (sprite) {
+					return sprite.imageId === action.key;
+				    });
+				    tmp.visible = true;
+				    break;
+				case "hideSprite":
+				    tmp = this.storySprites.find(function (sprite) {
+					return sprite.imageId === action.key;
+				    });
+				    tmp.visible = false;
+				    break;
+				default:
+				    break;
+			    }
+                    })
+            	}
+		catch (e) {}
             }
             this.currentSpeaker = this.story.texts[this.storyProgress].speaker;
             this.currentContent = this.story.texts[this.storyProgress].content;
